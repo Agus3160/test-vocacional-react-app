@@ -51,8 +51,8 @@ export default function CarouselCard({ cards, classNameContainer, minHeight }: P
             <button
               key={i}
               className={
-                `w-4 h-4 text-xl rounded-full outline-none ` +
-                (index === i ? "bg-red-500 dark:bg-red-500" : "bg-gray-400 dark:bg-gray-800")
+                `text-xl rounded-full outline-none ` +
+                (index === i ? "bg-red-500 dark:bg-red-500 w-4 h-4" : "w-3 h-3 bg-gray-400 dark:bg-gray-800")
               }
               onClick={() => setIndex(i)}
             ></button>

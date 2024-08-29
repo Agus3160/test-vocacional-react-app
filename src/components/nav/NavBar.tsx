@@ -3,6 +3,7 @@ import ChangeThemeBtn from "./ChangeThemeBtn";
 import { Menu } from "lucide-react";
 import NavSlideBar from "./NavSlideBar";
 import { useState } from "react";
+import { navItems } from "./data";
 
 export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -12,33 +13,28 @@ export default function NavBar() {
       <h1 className="text-2xl font-bold">FIUNI</h1>
 
       <ul className=" gap-2 hidden sm:flex sm:gap-4 items-center">
-        <Link
-          to="/"
-          className=" hover:text-red-700 dark:hover:text-red-500 hover:scale-105"
-        >
-          Home
-        </Link>
-
-        <Link
-          to="/about"
-          className=" hover:text-red-700 dark:hover:text-red-500 hover:scale-105"
-        >
-          About
-        </Link>
-
+        {navItems.map((item) => (
+          <Link
+            key={item.title}
+            to={item.to}
+            className="hover:text-red-700 dark:hover:text-red-500 hover:scale-105"
+          >
+            {item.title}
+          </Link>
+        ))}
         <ChangeThemeBtn />
       </ul>
 
       <button
         onClick={() => {
-          setShowMenu(!showMenu)
+          setShowMenu(!showMenu);
         }}
-        className={`sm:hidden duration-200 ${showMenu ? "rotate-90" : ""} `}
+        className={`sm:hidden duration-200 outline-none border-none ${showMenu ? "rotate-90" : ""} `}
       >
         <Menu />
       </button>
 
-      {showMenu ? <NavSlideBar  /> : null}
+      {showMenu ? <NavSlideBar setShowMenu={setShowMenu} /> : null}
     </nav>
   );
 }

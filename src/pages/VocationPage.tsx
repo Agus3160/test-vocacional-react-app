@@ -1,12 +1,5 @@
-import StepManager from '../components/StepManager'
-import { AppContextProvider } from '../context/AppContext'
+import StepManager from "../components/StepManager";
 
-type Props = {}
-
-export default function VocationPage({}: Props) {
-  return (
-    <AppContextProvider>
-      <StepManager />
-    </AppContextProvider>
-  )
+export default function VocationPage() {
+  return <StepManager />;
 }
