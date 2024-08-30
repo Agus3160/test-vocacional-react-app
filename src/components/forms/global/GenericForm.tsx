@@ -53,18 +53,21 @@ export default function GenericForm<T extends FieldValues>({
         {icon && icon}
       </div>
 
-      {fields.map(({ name, label, type, placeholder }) => (
+      {fields.map(({ name, label, type, placeholder, advice, required, autoComplete }) => (
         <Input
           key={String(name)}
           register={register}
           name={name}
           label={label}
           type={type}
+          autoComplete={autoComplete}
+          required={required}
           errors={errors}
           placeholder={placeholder}
+          advice={advice}
         />
       ))}
-      <div className="flex justify-between">
+      <div className="flex my-2 justify-between">
         {buttons.map((b, i) => {
           if (b.type === "submit")
             return (

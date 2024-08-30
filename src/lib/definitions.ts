@@ -7,19 +7,37 @@ export const userBasicInfoSchema = z.object({
 })
 export type UserBasicInfo = z.infer<typeof userBasicInfoSchema>
 
-export type FormContextValue = {
+export enum stepState {
+  active = "active",
+  finished = "finished",
+  none = "none",
+}
+
+export type FormContextValueType = {
   nombre: string
   apellido:string
   correo?:string
-  step:number
+  steps: StepType[]
+  currentStep: number
+}
+
+export type StepType = {
+  index: number
+  state: stepState
+  title:string;
 }
 
 export type FormContextType = {
-  formValues: FormContextValue
-  setStep: (step: number) => void
-  setFormValues: (context: FormContextValue) => void
+  formValues: FormContextValueType
+
+  //Functions
+  setStepByIndex: (newState:stepState, index: number) => void
+  setUpSteps: (steps: StepType[]) => void
+  setFormValues: (context: FormContextValueType) => void
+  setCurrentStep: (newStep: number) => void
 }
 
 export type FormContextProviderParams = {
+  steps?: StepType[]
   children: JSX.Element
 }

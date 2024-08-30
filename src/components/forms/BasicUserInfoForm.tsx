@@ -1,69 +1,108 @@
-import { useFormContext } from "../../context/FormContext"
-import { userBasicInfoSchema, UserBasicInfo } from "../../lib/definitions"
-import GenericForm from "./global/GenericForm"
-import { useNavigate } from "react-router-dom"
+import { useFormContext } from "../../context/FormContext";
+import { userBasicInfoSchema, UserBasicInfo } from "../../lib/definitions";
+import GenericForm from "./global/GenericForm";
+import { useNavigate } from "react-router-dom";
+import ScoreInput from "./global/ScoreInput";
 
 export default function BasicUserInfoForm() {
-
-  const {
-   formValues,
-   setFormValues, 
-  } = useFormContext()
-  const navigate = useNavigate()
+  const { formValues, setFormValues, setCurrentStep } = useFormContext();
+  const navigate = useNavigate();
 
   const cancelHanlder = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
-  const handleSubmit = (data:UserBasicInfo) => {
-    setFormValues({ ...formValues, 
-      nombre:data.nombre,
+  const handleSubmit = (data: UserBasicInfo) => {
+    const { currentStep } = formValues;
+    setFormValues({
+      ...formValues,
+      nombre: data.nombre,
       apellido: data.apellido,
-      correo: data.correo
-     });
-  }
-
-  console.log(formValues)
+      correo: data.correo,
+    });
+    setCurrentStep(currentStep + 1);
+  };
 
   return (
-      <GenericForm 
+    <>
+      <GenericForm
         title="Información personal"
         buttons={[
           {
             type: "button",
-            value:"Cancelar",
+            value: "Cancelar",
             onClick: cancelHanlder,
-            className: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex gap-2",
+            className:
+              "bg-gray-500 hover:bg-gray-700 hover:scale-105 duration-100 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-100 dark:text-gray-300 text-sm font-bold py-2 px-4 rounded flex gap-2",
           },
           {
             type: "submit",
-            value:"Siguiente",
-            className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex gap-2",
-          }
+            value: "Siguiente",
+            className:
+              "bg-green-500 hover:bg-green-700 hover:scale-105 duration-100 dark:bg-green-800 dark:hover:bg-green-700 text-green-100 dark:text-gray-300 text-sm font-bold py-2 px-4 rounded flex gap-2",
+          },
         ]}
         schema={userBasicInfoSchema}
-        onSubmit={(d)=>handleSubmit(d)}
+        onSubmit={(d) => handleSubmit(d)}
         fields={[
           {
             name: "nombre",
             label: "Nombre",
             type: "text",
+            autoComplete: "off",
+            required: true,
             placeholder: "Ingrese su nombre completo",
           },
           {
             name: "apellido",
             label: "Apellido",
             type: "text",
+            autoComplete: "off",
+            required: true,
             placeholder: "Ingrese su apellido completo",
           },
           {
             name: "correo",
             label: "Correo",
             type: "email",
+            autoComplete: "off",
             placeholder: "johndoe123@example.com",
-            advice: "No compartiremos tu correo con nadie. Es con la unica finalidad de que recibas el PDF en tu correo.",
+            advice:
+              "Es con la unica finalidad de que también recibas el PDF en tu correo (Este es un campo opcional)",
           },
         ]}
       />
-  )
+      <ScoreInput
+        name="score"
+        title="1. ¿Que opinas de que Nieves haya dicho Bombas?"
+        puntajes={[
+          {
+            value: 4,
+            desc: "😡",
+            label: "Muy en desacuerdo",
+          },
+          {
+            value: 3,
+            desc: "😠",
+            label: "En desacuerdo",
+          },
+          {
+            value: 2,
+            desc: "😐",
+            label: "Neutral",
+          },
+          {
+            value: 1,
+            desc: "🙂",
+            label: "De acuerdo",
+          },
+          {
+            value: 0,
+            desc: "😁",
+            label: "Muy deacuerdo",
+          },
+        ]}
+      />
+    </>
+  );
 }

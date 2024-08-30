@@ -1,14 +1,11 @@
+import { InputHTMLAttributes } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-export type CustomInputProps = {
+export type CustomInputProps = InputHTMLAttributes<HTMLInputElement> & {
   register: UseFormRegister<any>;
   name: string;
-  label?: string;
-  type: string;
   errors: FieldErrors<any>;
-  required?: boolean;
-  placeholder?: string;
-  className?: string;
+  label?: string;
   resizable?: boolean;
   advice?: string;
 };
@@ -22,6 +19,7 @@ export default function Input({
   placeholder,
   className,
   resizable,
+  autoComplete,
   advice,
   required
 }: CustomInputProps) {
@@ -45,6 +43,7 @@ export default function Input({
         />
       ) : (
         <input
+          autoComplete={autoComplete}
           className={`text-gray-800 p-2 placeholder-gray-500 border-b-2 dark:text-gray-300 border-gray-500 border-gray-300 outline-none bg-transparent ${className || ''} ${
             errors[name] ? 'border-red-500 focus:border-red-700' : 'focus:border-blue-700'
           }`}
@@ -55,7 +54,7 @@ export default function Input({
           placeholder={placeholder}
         />
       )}
-      {advice && advice.length > 0 && <p className="text-sm text-gray-500">{advice}</p>}
+      {advice && advice.length > 0 && <p className="text-xs text-gray-500">** {advice}</p>}
       {errors[name] && <p className="text-sm text-red-500">{errors[name]?.message as string}</p>}
     </div>
   );
