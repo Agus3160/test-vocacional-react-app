@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# RIASEC Vocational Test App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application designed to manage a vocational test based on the RIASEC model. The app is built using Vite and leverages various modern tools and libraries, including React, React Router DOM, React Hook Form, TypeScript, Tailwind CSS, and Zod.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Multi-Step Form**: The core feature of this application is a multi-step form used to conduct a vocational test based on the RIASEC model.
+- **RIASEC Test Management**: Collect user inputs and calculate scores across different RIASEC domains.
+- **Responsive Design**: The app is fully responsive, ensuring a seamless experience on both desktop and mobile devices.
+- **Form Validation**: Robust form validation powered by Zod and React Hook Form.
+- **Type Safety**: Built with TypeScript, ensuring type safety and code reliability.
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **React**: For building the user interface.
+- **React Router DOM**: For managing navigation and routing within the application.
+- **React Hook Form**: For handling form state and validation.
+- **TypeScript**: For static typing and enhanced code quality.
+- **Tailwind CSS**: For styling and responsive design.
+- **Zod**: For schema validation and form input validation.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To get started with this project, follow these steps:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Agus3160/test-vocacional-react-app
+   ```
+   
+2. Install all the dependencies:
+    ```bash
+        npm install
+    ```
+    
+3. Run the project:
+    ```bash
+        npm run dev
+    ```
+
+## Usage
+
+- **Navigating the Form**: The form is split into multiple steps, guiding users through a series of questions to determine their RIASEC profile.
+
+- **Validation**: Each step of the form includes validation rules, ensuring users provide the necessary information before proceeding.
+
+- **Submission**: Upon completing the test, the application calculates and displays the user's RIASEC profile, suggesting potential career paths based on their scores.
