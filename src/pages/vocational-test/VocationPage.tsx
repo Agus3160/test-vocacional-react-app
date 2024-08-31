@@ -1,6 +1,6 @@
-import StepManager from "../components/StepManager";
-import { FormContextProvider } from "../context/FormContext";
-import { stepState, StepType } from "../lib/definitions";
+import StepManager from "../../components/StepManager";
+import { FormContextProvider } from "../../context/FormContext";
+import { stepState, StepType } from "../../lib/definitions";
 
 export default function VocationPage() {
   const steps: StepType[] = [
@@ -39,6 +39,11 @@ export default function VocationPage() {
       state: stepState.none,
       title: "Eficiencia Administrativa",
     },
+    {
+      index: 6,
+      state: stepState.results,
+      title: "Resultados",
+    }
   ];
 
   return (

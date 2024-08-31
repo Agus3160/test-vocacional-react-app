@@ -29,7 +29,7 @@ export default function NavBar() {
         onClick={() => {
           setShowMenu(!showMenu);
         }}
-        className={`sm:hidden duration-200 outline-none border-none ${showMenu ? "rotate-90" : ""} `}
+        className={`sm:hidden duration-200 outline-none ${showMenu ? "rotate-90" : ""}`}
       >
         <Menu />
       </button>

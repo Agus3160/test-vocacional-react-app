@@ -7,6 +7,8 @@ export default function BasicUserInfoForm() {
   const { formValues, setFormValues, setCurrentStep } = useFormContext();
   const navigate = useNavigate();
 
+  const { nombre, apellido, correo } = formValues; // Initial Values
+
   const cancelHanlder = () => {
     navigate("/");
   };
@@ -26,6 +28,7 @@ export default function BasicUserInfoForm() {
     <>
       <GenericForm
         title="Información personal"
+        defaultValues={{ nombre, apellido, correo }}
         buttons={[
           {
             type: "button",

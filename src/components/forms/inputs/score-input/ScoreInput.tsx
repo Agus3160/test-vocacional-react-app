@@ -23,7 +23,7 @@ export default function ScoreInput({
   onClick,
 }: ScoreInputType) {
   const [selectedOption, setSelectedOption] = useState<number | null>(
-    initialChecked || null
+    initialChecked != null ? initialChecked : null
   );
 
   const onClickHandler = (option: number) => {
@@ -37,7 +37,7 @@ export default function ScoreInput({
 
   return (
     <div className="w-full flex flex-col gap-3 text-gray-800 dark:text-gray-300">
-      <p>{title}</p>
+      <p className="font-semibold">{title}</p>
       <div className="flex w-full gap-2 sm:gap-4">
         {puntajes.map((puntaje, index) => {
           const isSelected = selectedOption === puntaje.value;

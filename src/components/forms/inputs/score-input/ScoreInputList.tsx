@@ -10,6 +10,7 @@ type Props = {
   minScore: number;
   maxScore: number;
   scoreStyle: ScoreOptions[];
+  initValues?: number[];
   onSubmit: (v: number[]) => void;
   onBackHanlder: () => void;
 };
@@ -20,6 +21,7 @@ export default function ScoreInputListForm({
   scoreStyle,
   onSubmit,
   minScore,
+  initValues,
   onBackHanlder,
 }: Props) {
   const schema = z.object({
@@ -41,7 +43,7 @@ export default function ScoreInputListForm({
   } = useForm<Schema>({
     resolver: zodResolver(schema),
     defaultValues: {
-      values: new Array(preguntas.length).fill(undefined),
+      values: initValues || new Array(preguntas.length).fill(undefined),
     },
   });
 
@@ -76,6 +78,7 @@ export default function ScoreInputListForm({
       {preguntas.map((p, index) => (
         <div className="w-full flex flex-col gap-2" key={p}>
           <ScoreInput
+            initialChecked={initValues && initValues !== null ? initValues[index] : undefined}
             puntajes={scoreStyle}
             title={`${index + 1}. ${p}`}
             name={`p-${index}`}
