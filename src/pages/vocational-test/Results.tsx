@@ -17,7 +17,7 @@ export default function Results() {
   const { title, carrerasRelacionadas, description, svg } = result;
 
   return (
-    <div className="w-full h-full text-gray-800 dark:text-gray-300 max-w-[800px] mx-auto pb-8 sm:pb-0">
+    <div className="w-full h-full text-gray-800 dark:text-gray-300 max-w-[800px] mx-auto pb-8">
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-semi-bold text-gray-800 dark:text-gray-300">
           Felicidades{" "}
@@ -52,7 +52,7 @@ export default function Results() {
             <button
               title="Return to home page"
               onClick={() => navigate("/")}
-              className="hover:scale-105 bg-gray-500 hover:bg-gray-600 dark:bg-green-800 dark:hover:bg-green-700 dark:text-green-300 text-green-100 p-2 flex gap-1 rounded"
+              className="hover:scale-105 bg-gray-500 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 text-gray-100 p-2 flex gap-1 rounded"
             >
               <p className="hidden sm:block">Return Home</p>
               <House />

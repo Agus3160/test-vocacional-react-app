@@ -1,5 +1,10 @@
 import {RAISECResponses} from "../../lib/definitions";
 import realisticIconUrl from '/img/svg/realistic.svg';
+import investigativeIconUrl from '/img/svg/investigative.svg';
+import artisticIconUrl from '/img/svg/artistic.svg';
+import socialIconUrl from '/img/svg/social.svg';
+import enterprisingIconUrl from '/img/svg/entrepreneur.svg';
+import conventionalIconUrl from '/img/svg/conventional.svg';
 
 export type Results = {
   title: string;
@@ -34,7 +39,7 @@ export const results: { [key in keyof RAISECResponses]: Results } = {
       "Matemáticas",
       "Estadística",
     ],
-    svg: realisticIconUrl,
+    svg: investigativeIconUrl,
   },
 
   artistic: {
@@ -51,7 +56,7 @@ export const results: { [key in keyof RAISECResponses]: Results } = {
       "Diseño",
       "Fotografía",
     ],
-    svg: realisticIconUrl,
+    svg: artisticIconUrl,
   },
 
   social: {
@@ -65,7 +70,7 @@ export const results: { [key in keyof RAISECResponses]: Results } = {
       "Enfermería",
       "Sociología",
     ],
-    svg: realisticIconUrl,
+    svg: socialIconUrl,
   },
 
   enterprising: {
@@ -79,7 +84,7 @@ export const results: { [key in keyof RAISECResponses]: Results } = {
       "Administración de Empresas",
       "Derecho",
     ],
-    svg: realisticIconUrl,
+    svg: enterprisingIconUrl,
   },
 
   conventional: {
@@ -95,6 +100,6 @@ export const results: { [key in keyof RAISECResponses]: Results } = {
       "Gestión de Proyectos",
       "Secretariado",
     ],
-    svg: realisticIconUrl,
+    svg: conventionalIconUrl,
   },
 };

@@ -78,3 +78,59 @@ export type RAISECScores = {
   conventional: number;
 };
 
+export const testValues = {
+  nombre: "Agustin",
+  apellido: "Oviedo",
+  correo: undefined,
+  steps: [
+    {
+      index: 0,
+      state: stepState.active,
+      title: "Informacion Basica",
+    },
+    {
+      index: 1,
+      state: stepState.none,
+      title: "Intereses Prácticos",
+    },
+    {
+      index: 2,
+      state: stepState.none,
+      title: "Aptitudes Investigativas",
+    },
+    {
+      index: 3,
+      state: stepState.none,
+      title: "Expresión Artística",
+    },
+    {
+      index: 4,
+      state: stepState.none,
+      title: "Habilidades Interpersonales",
+    },
+    {
+      index: 5,
+      state: stepState.none,
+      title: "Gestión y Negocios",
+    },
+    {
+      index: 6,
+      state: stepState.none,
+      title: "Eficiencia Administrativa",
+    },
+    {
+      index: 6,
+      state: stepState.results,
+      title: "Resultados",
+    }
+  ],
+  currentStep: 7,
+  responses: {
+    realistic: [0, 0, 0, 0, 0, 0],
+    investigative: [1, 0, 0, 0, 0, 0],
+    artistic: [0, 4, 0, 0, 0, 0],
+    social: [0, 0, 5, 0, 0, 0],
+    enterprising: [0, 3, 0, 0, 0, 0],
+    conventional: [0, 3, 0, 0, 0, 0],
+  }
+}
