@@ -48,16 +48,25 @@ export type FormContextType = {
   formValues: FormContextValueType;
 
   //Functions
+
+  //Managing the steps
   setStepByIndex: (newState: stepState, index: number) => void;
   setUpSteps: (steps: StepType[]) => void;
-  setFormValues: (context: FormContextValueType) => void;
+  nextStep: () => void;
+  prevStep: () => void;
   setCurrentStep: (newStep: number) => void;
+
+  //Change all the values of the form
+  setFormValues: (context: FormContextValueType) => void;
+
+  //Change individual values
   setResponses: (index: keyof RAISECResponses, value: number[]) => void;
 };
 
 export type FormContextProviderParams = {
   steps?: StepType[];
   children: JSX.Element;
+  asksQuantity?: number;
 };
 
 export type RAISECResponses = {
@@ -126,11 +135,11 @@ export const testValues = {
   ],
   currentStep: 7,
   responses: {
-    realistic: [0, 0, 0, 0, 0, 0],
-    investigative: [1, 0, 0, 0, 0, 0],
+    realistic: [0, 0, 0, 4, 0, 0],
+    investigative: [0, 0, 0, 0, 0, 0],
     artistic: [0, 4, 0, 0, 0, 0],
-    social: [0, 0, 5, 0, 0, 0],
-    enterprising: [0, 3, 0, 0, 0, 0],
-    conventional: [0, 3, 0, 0, 0, 0],
+    social: [0, 0, 4, 5, 0, 0],
+    enterprising: [4, 5, 0, 0, 0, 0],
+    conventional: [0, 0, 0, 5, 0, 0],
   }
 }

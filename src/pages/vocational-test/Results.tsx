@@ -25,7 +25,7 @@ export default function Results() {
           perfil es de <span className="text-red-500 font-bold">"{title}"</span>
         </h2>
         <p className="text-md">{description}</p>
-        <div className="relative flex sm:flex-row rounded bg-gray-100 dark:bg-gray-800 px-2 py-4 gap-4 rounded shadow flex-col justify-center items-center">
+        <div className="relative flex sm:flex-row rounded bg-gray-200 dark:bg-gray-800 px-2 py-4 gap-4 rounded shadow flex-col justify-center items-center">
           <div className="flex flex-col gap-2 sm:gap-3">
             <h3 className="text-xl font-bold text-red-500">
               Carreras relacionadas:
@@ -40,7 +40,7 @@ export default function Results() {
             crossOrigin="anonymous"
             alt="svg"
             src={svg}
-            className=" w-[240px] sm:w-[280px] max-w-[300px]"
+            className="w-[240px] sm:w-[280px] max-w-[300px]"
           />
           <div className="absolute -right-1 -bottom-4">
             <PDFDownloadButton

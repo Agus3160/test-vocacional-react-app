@@ -11,6 +11,7 @@ export type ScoreInputType = {
   title: string;
   name: string;
   label?: string;
+  error?: string;
   initialChecked?: number;
   onClick?: (option: number) => void;
 };
@@ -20,6 +21,7 @@ export default function ScoreInput({
   title,
   name,
   initialChecked,
+  error,
   onClick,
 }: ScoreInputType) {
   const [selectedOption, setSelectedOption] = useState<number | null>(
@@ -47,12 +49,18 @@ export default function ScoreInput({
                 onClickHandler(puntaje.value);
               }}
               key={index}
-              className={
-                "flex flex-col relative cursor-pointer flex-1 text-center h-auto sm:h-28 px-1 sm:px-2 bg-white dark:bg-gray-700 shadow rounded hover:cursor-pointer justify-center items-center hover:scale-105 duration-100" +
-                (isSelected
-                  ? " bg-gradient-to-t from-gray-100 scale-110 sm:scale-105 to-transparent dark:from-gray-800 bg-opacity-25 outline outline-2 outline-blue-500 "
-                  : "")
-              }
+              className={`flex flex-col relative cursor-pointer flex-1 text-center h-auto sm:h-28 px-1 sm:px-2 bg-white dark:bg-gray-700 shadow rounded hover:cursor-pointer justify-center items-center hover:scale-105 duration-100 
+                ${
+                  error
+                    ? " outline outline-1 outline-red-500 dark:outline-red-700 "
+                    : ""
+                }
+                ${
+                  isSelected
+                    ? " bg-gradient-to-t from-gray-100 scale-110 sm:scale-105 to-transparent dark:from-gray-800 bg-opacity-25 outline outline-2 outline-blue-500 "
+                    : ""
+                }
+              `}
             >
               <p
                 className={
@@ -76,7 +84,7 @@ export default function ScoreInput({
       </div>
       {selectedOption != null && (
         <p
-          className={`text-center text-sm duration-300 ${
+          className={`text-center text-sm duration-300 h-0 ${
             selectedOption !== null ? "opacity-100 sm:hidden" : "opacity-0"
           }`}
         >

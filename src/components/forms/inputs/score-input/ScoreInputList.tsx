@@ -13,6 +13,7 @@ type Props = {
   initValues?: number[];
   onSubmit: (v: number[]) => void;
   onBackHanlder: () => void;
+  onChange?: (v: number[]) => void;
 };
 
 export default function ScoreInputListForm({
@@ -23,6 +24,7 @@ export default function ScoreInputListForm({
   minScore,
   initValues,
   onBackHanlder,
+  onChange,
 }: Props) {
   const schema = z.object({
     values: z
@@ -30,7 +32,7 @@ export default function ScoreInputListForm({
       .min(minScore)
       .max(maxScore)
       .array()
-      .max(preguntas.length),
+      .length(preguntas.length)
   });
 
   type Schema = z.infer<typeof schema>;
@@ -68,6 +70,7 @@ export default function ScoreInputListForm({
     setValue("values", values, {
       shouldValidate: errors.values ? true : false,
     });
+    onChange && onChange(values);
   };
 
   return (
@@ -82,14 +85,15 @@ export default function ScoreInputListForm({
             puntajes={scoreStyle}
             title={`${index + 1}. ${p}`}
             name={`p-${index}`}
+            error={errors.values? errors.values[index]?.message : undefined}
             onClick={(op) => onChangeHandler(index, op)}
           />
           {errors.values && errors.values[index] && (
             <p
-              className="flex gap-1 text-red-500 dark:text-red-600 "
+              className="flex items-center text-xs sm:text-sm gap-1 text-red-500  dark:text-red-600 "
               ref={(el) => (errorRefs.current[index] = el)}
             >
-              <CircleX />
+              <CircleX size={16} />
               {errors.values[index]?.message}
             </p>
           )}

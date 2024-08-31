@@ -5,19 +5,11 @@ import ScoreInputListForm from "../inputs/score-input/ScoreInputList";
 
 export default function RationalForm() {
   const {
-    setCurrentStep,
+    prevStep,
+    nextStep,
     setResponses,
-    formValues: { currentStep, responses },
+    formValues: { responses },
   } = useFormContext();
-
-  const onSubmit = (v: number[]) => {
-    setResponses("realistic", v);
-    setCurrentStep(currentStep + 1);
-  };
-
-  const onBackHanlder = () => {
-    setCurrentStep(currentStep - 1);
-  };
 
   return (
     <ScoreInputListForm
@@ -26,8 +18,9 @@ export default function RationalForm() {
       minScore={0}
       maxScore={5}
       scoreStyle={scoreStyleOneToFiveEmoji}
-      onBackHanlder={onBackHanlder}
-      onSubmit={onSubmit}
+      onBackHanlder={prevStep}
+      onSubmit={nextStep}
+      onChange={(v) => setResponses("realistic", v)}
     />
   );
 }

@@ -13,6 +13,7 @@ const FormContext = createContext<FormContextType | null>(null);
 export const FormContextProvider = ({
   children,
   steps,
+  asksQuantity = 8,
 }: FormContextProviderParams) => {
   const startValues: FormContextValueType = {
     nombre: "",
@@ -20,12 +21,12 @@ export const FormContextProvider = ({
     currentStep: 0,
     steps: steps || [],
     responses: {
-      realistic: [],
-      investigative: [],
-      artistic: [],
-      social: [],
-      enterprising: [],
-      conventional: [],
+      realistic: Array(asksQuantity).fill(undefined),
+      investigative: Array(asksQuantity).fill(undefined),
+      artistic: Array(asksQuantity).fill(undefined),
+      social: Array(asksQuantity).fill(undefined),
+      enterprising: Array(asksQuantity).fill(undefined),
+      conventional: Array(asksQuantity).fill(undefined),
     },
   };
 
@@ -65,6 +66,14 @@ export const FormContextProvider = ({
     });
   };
 
+  const nextStep = () => {
+    setCurrentStep(formValues.currentStep + 1);
+  };
+
+  const prevStep = () => {
+    setCurrentStep(formValues.currentStep - 1);
+  };
+
   return (
     <FormContext.Provider
       value={{
@@ -73,6 +82,8 @@ export const FormContextProvider = ({
         setStepByIndex,
         setFormValues,
         setUpSteps,
+        nextStep,
+        prevStep,
         setCurrentStep,
       }}
     >
