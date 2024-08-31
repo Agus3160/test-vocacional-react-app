@@ -19,19 +19,19 @@ const SuspensiveDots = ({ size = 2 }: Props = {}) => {
     <div className="flex items-center justify-center gap-1">
       <div
         style={{ height: `${size}em`, width: `${size}em` }}
-        className={`bg-black dark:bg-gray-300 rounded-full duration-300 delay-[0ms] ${
+        className={`bg-black dark:bg-gray-300 rounded-full duration-300 delay-\[0ms\] ${
           visibleDots >= 1 ? "opacity-100 scale-100" : "opacity-0 scale-0"
         }`}
       ></div>
       <div
         style={{ height: `${size}em`, width: `${size}em` }}
-        className={`bg-black dark:bg-gray-300 rounded-full duration-300 delay-[150ms] ${
+        className={`bg-black dark:bg-gray-300 rounded-full duration-300 delay-\[150ms\] ${
           visibleDots >= 2 ? "opacity-100 scale-100" : "opacity-0 scale-0"
         }`}
       ></div>
       <div
         style={{ height: `${size}em`, width: `${size}em` }}
-        className={`bg-black dark:bg-gray-300 rounded-full duration-300 delay-[300ms] ${
+        className={`bg-black dark:bg-gray-300 rounded-full duration-300 delay-\[300ms\] ${
           visibleDots >= 3 ? "opacity-100 scale-100" : "opacity-0 scale-0"
         }`}
       ></div>

@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { useForm, FieldValues, UseFormReturn, DefaultValues } from "react-hook-form";
 import { ZodSchema } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input, { CustomInputProps } from "./Input";
+import Input, { CustomInputProps } from "../inputs/Input";
 import { LoaderCircle } from "lucide-react";
 
 type CustomInputPartialProps = Omit<CustomInputProps, "register" | "errors">;

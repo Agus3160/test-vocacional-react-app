@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { createContext, useContext, useEffect } from "react";
 
 
 export type Theme = {
@@ -15,7 +16,7 @@ export type ThemeProviderParams = {
 
 export const ThemeProvider = ({ children, initTheme }: ThemeProviderParams ) => {
 
-  const [theme, setTheme] = useState(initTheme);
+  const [theme, setTheme] = useLocalStorage("theme", initTheme);
   const setThemeValue = (isDark: boolean) => setTheme(isDark);
 
   useEffect(() => {

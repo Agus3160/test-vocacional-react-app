@@ -12,32 +12,32 @@ export default function VocationPage() {
     {
       index: 1,
       state: stepState.none,
-      title: "R",
+      title: "Intereses Prácticos",
     },
     {
       index: 2,
       state: stepState.none,
-      title: "I",
+      title: "Aptitudes Investigativas",
     },
     {
       index: 3,
       state: stepState.none,
-      title: "A",
+      title: "Expresión Artística",
     },
     {
       index: 4,
       state: stepState.none,
-      title: "S",
+      title: "Habilidades Interpersonales",
     },
     {
       index: 5,
       state: stepState.none,
-      title: "E",
+      title: "Gestión y Negocios",
     },
     {
       index: 6,
       state: stepState.none,
-      title: "C",
+      title: "Eficiencia Administrativa",
     },
   ];
 

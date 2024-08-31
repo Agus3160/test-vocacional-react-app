@@ -3,6 +3,7 @@ import { useFormContext } from "../context/FormContext";
 import BasicUserInfoForm from "./forms/BasicUserInfoForm";
 import StepCardList from "./ui/step-card/StepCardList";
 import { handleBeforeUnload } from "../lib/util";
+import RationalForm from "./forms/RationalForm";
 
 type Props = {};
 
@@ -19,9 +20,15 @@ export default function StepManager({}: Props) {
   return (
     <div className="w-full h-full p-4 ">
       <div className="flex flex-col gap-8 max-w-[800px] mx-auto">
-        <StepCardList cards={steps} currentStep={currentStep} />
+        <StepCardList steps={steps} currentStep={currentStep} />
 
-        {currentStep === 0 ? <BasicUserInfoForm /> : null}
+        {
+          currentStep === 0 ? <BasicUserInfoForm /> : 
+          currentStep === 1 ? <RationalForm /> 
+          :
+          null
+        }
+
 
         {/* <button
           onClick={() => setCurrentStep( currentStep - 1 )}

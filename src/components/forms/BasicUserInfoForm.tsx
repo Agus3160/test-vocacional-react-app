@@ -2,7 +2,6 @@ import { useFormContext } from "../../context/FormContext";
 import { userBasicInfoSchema, UserBasicInfo } from "../../lib/definitions";
 import GenericForm from "./global/GenericForm";
 import { useNavigate } from "react-router-dom";
-import ScoreInput from "./global/ScoreInput";
 
 export default function BasicUserInfoForm() {
   const { formValues, setFormValues, setCurrentStep } = useFormContext();
@@ -69,37 +68,6 @@ export default function BasicUserInfoForm() {
             placeholder: "johndoe123@example.com",
             advice:
               "Es con la unica finalidad de que también recibas el PDF en tu correo (Este es un campo opcional)",
-          },
-        ]}
-      />
-      <ScoreInput
-        name="score"
-        title="1. ¿Que opinas de que Nieves haya dicho Bombas?"
-        puntajes={[
-          {
-            value: 4,
-            desc: "😡",
-            label: "Muy en desacuerdo",
-          },
-          {
-            value: 3,
-            desc: "😠",
-            label: "En desacuerdo",
-          },
-          {
-            value: 2,
-            desc: "😐",
-            label: "Neutral",
-          },
-          {
-            value: 1,
-            desc: "🙂",
-            label: "De acuerdo",
-          },
-          {
-            value: 0,
-            desc: "😁",
-            label: "Muy deacuerdo",
           },
         ]}
       />
