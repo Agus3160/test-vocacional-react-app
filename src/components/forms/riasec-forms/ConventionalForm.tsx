@@ -1,5 +1,5 @@
 import { useFormContext } from "../../../context/FormContext";
-import { preguntasRIASEC } from "../../../data";
+import { preguntasRIASEC } from "../../../lib/data";
 import { scoreStyleOneToFiveEmoji } from "../inputs/score-input/data";
 import ScoreInputListForm from "../inputs/score-input/ScoreInputList";
 
