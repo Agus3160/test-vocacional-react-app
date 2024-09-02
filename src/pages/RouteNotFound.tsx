@@ -1,7 +1,4 @@
-
-type Props = {}
-
-export default function RouteNotFound({}: Props) {
+export default function RouteNotFound() {
   return (
     <div
       className="w-screen min-h-[calc(100vh-64px)] flex bg-black items-center justify-center"

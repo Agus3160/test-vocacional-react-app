@@ -1,5 +1,5 @@
-import { RAISECResponses, RAISECScores } from "./definitions";
-import { results } from "../pages/vocational-test/data";
+import { RIASECResponses, RAISECScores } from "./definitions";
+import { results } from "./data";
 
 const handleBeforeUnload = (event: BeforeUnloadEvent) => {
   const message =
@@ -20,7 +20,7 @@ const getResult = (scores: RAISECScores) => {
   return results[lessScoredKey as keyof typeof results];
 };
 
-const calculateScores = (responses: RAISECResponses) => {
+const calculateScores = (responses: RIASECResponses) => {
   const scores = {
     realistic: 0,
     investigative: 0,
@@ -31,7 +31,7 @@ const calculateScores = (responses: RAISECResponses) => {
   };
 
   for (const [key, value] of Object.entries(responses))
-    scores[key as keyof RAISECResponses] += value.reduce((a, b) => a + b, 0);
+    scores[key as keyof RIASECResponses] += value.reduce((a, b) => a + b, 0);
 
   return scores;
 };

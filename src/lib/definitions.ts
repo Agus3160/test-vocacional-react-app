@@ -35,7 +35,7 @@ export type FormContextValueType = {
   correo?: string;
   steps: StepType[];
   currentStep: number;
-  responses: RAISECResponses;
+  responses: RIASECResponses;
 };
 
 export type StepType = {
@@ -60,7 +60,7 @@ export type FormContextType = {
   setFormValues: (context: FormContextValueType) => void;
 
   //Change individual values
-  setResponses: (index: keyof RAISECResponses, value: number[]) => void;
+  setResponses: (index: keyof RIASECResponses, value: number[]) => void;
 };
 
 export type FormContextProviderParams = {
@@ -69,13 +69,20 @@ export type FormContextProviderParams = {
   asksQuantity?: number;
 };
 
-export type RAISECResponses = {
+export type RIASECResponses = {
   realistic: number[];
   investigative: number[];
   artistic: number[];
   social: number[];
   enterprising: number[];
   conventional: number[];
+};
+
+export type RIASECResults = {
+  title: string;
+  description: string;
+  carrerasRelacionadas: string[];
+  svg: string;
 };
 
 export type RAISECScores = {

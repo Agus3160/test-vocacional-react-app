@@ -5,7 +5,7 @@ import {
   FormContextValueType,
   stepState,
   StepType,
-  RAISECResponses,
+  RIASECResponses,
 } from "../lib/definitions";
 
 const FormContext = createContext<FormContextType | null>(null);
@@ -33,7 +33,7 @@ export const FormContextProvider = ({
   const [formValues, setFormValues] =
     useState<FormContextValueType>(startValues);
 
-  const setResponses = (index: keyof RAISECResponses, value: number[]) => {
+  const setResponses = (index: keyof RIASECResponses, value: number[]) => {
     setFormValues((prev) => {
       const newResponses = { ...prev.responses };
       newResponses[index] = value;
