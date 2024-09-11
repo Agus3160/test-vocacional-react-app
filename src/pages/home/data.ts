@@ -11,11 +11,11 @@ export const cardList:CardInfo[] = [
   {
     type: "help",
     title: "¿Cómo ayudamos?",
-    body:"En pos de analizar tu perfil para hallar aquella vocación que más se acerque a tu persona, utilizaremos un método muy reconocido, estudiado y utilizado en varias instituciones a nivel global llamado RIASEC (Llamado asi por los ámbitos que analiza) para guiarte en la identificación de tus intereses, fortalezas, aspiraciones y todo aquello que forme tu persona."
+    body: "Identificamos tus áreas de mayor interés vocacional. No hay respuestas correctas o incorrectas, lo importante es que respondas con honestidad. De esta forma, los resultados reflejarán de manera más precisa tus intereses y habilidades. El test está diseñado para ser sencillo, pero asegúrate de completarlo en un lugar tranquilo y privado."
   },
   {
     type: "help",
-    title: "¿Qué es el RIASEC?",
-    body: "El método RIASEC te ayuda a descubrir tu vocación a través de un cuestionario que clasifica tu perfil en seis áreas: Realista, Investigador, Artístico, Social, Emprendedor, y Convencional. Basado en tus resultados, te sugerimos las carreras que mejor se alinean con tus fortalezas y preferencias, para la toma de decisiones informadas sobre tu futuro profesional.",
+    title: "¿Qué método utilizamos?",
+    body: "Para orientarte en la elección de tu carrera, empleamos un test diseñado por las psicólogas Malca de Goldenberg y Magali Merchán. Este test evalúa tus intereses sobre una serie de actividades específicas, permitiéndonos crear un perfil detallado de tus preferencias. A partir de estos resultados, podremos identificar las áreas que mejor se alinean con tus inclinaciones y ofrecerte una orientación personalizada basada en tus intereses.",
   },
 ];
