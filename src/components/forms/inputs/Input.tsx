@@ -1,10 +1,10 @@
 import { InputHTMLAttributes } from 'react';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 
 export type CustomInputProps = InputHTMLAttributes<HTMLInputElement> & {
   register: UseFormRegister<any>;
   name: string;
-  errors: FieldErrors<any>;
+  errors?: string;
   label?: string;
   resizable?: boolean;
   advice?: string;
@@ -21,7 +21,8 @@ export default function Input({
   resizable,
   autoComplete,
   advice,
-  required
+  required,
+  onKeyDown,
 }: CustomInputProps) {
   return (
     <div key={String(name)} className="flex flex-col gap-1 w-full">
@@ -35,7 +36,7 @@ export default function Input({
         <textarea
           className={`p-2 border-b-2 border-gray-300 focus:border-blue-700 focus:outline-none bg-transparent ${className || ''} ${
             resizable ? '' : 'resize-none'
-          } ${errors[name] ? 'border-red-500' : ''}`}
+          } ${errors ? 'border-red-500' : ''}`}
           id={String(name)}
           required={required}
           {...register(name)}
@@ -43,9 +44,10 @@ export default function Input({
         />
       ) : (
         <input
+          onKeyDown={onKeyDown}
           autoComplete={autoComplete}
           className={`text-gray-800 p-2 placeholder-gray-500 border-b-2 dark:text-gray-300 border-gray-500 border-gray-300 outline-none bg-transparent ${className || ''} ${
-            errors[name] ? 'border-red-500 focus:border-red-700' : 'focus:border-blue-700'
+            errors ? 'border-red-500 focus:border-red-700' : 'focus:border-blue-700'
           }`}
           id={String(name)}
           {...register(name)}
@@ -55,7 +57,7 @@ export default function Input({
         />
       )}
       {advice && advice.length > 0 && <p className="text-xs text-gray-500">** {advice}</p>}
-      {errors[name] && <p className="text-sm text-red-500">{errors[name]?.message as string}</p>}
+      {errors && <p className="text-sm text-red-500">{errors as string}</p>}
     </div>
   );
 }

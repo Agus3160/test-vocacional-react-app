@@ -1,5 +1,16 @@
-import { RIASECResponses, RAISECScores } from "./definitions";
-import { results } from "./data";
+import { PhoneNumberUtil } from 'google-libphonenumber';
+import { RespuestasSchemaType } from './definitions';
+import { results } from './data';
+
+const phoneUtil = PhoneNumberUtil.getInstance();
+
+const isPhoneValid = (phone: string) => {
+  try {
+    return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
+  } catch (error) {
+    return false;
+  }
+};
 
 const handleBeforeUnload = (event: BeforeUnloadEvent) => {
   const message =
@@ -8,32 +19,34 @@ const handleBeforeUnload = (event: BeforeUnloadEvent) => {
   return message;
 };
 
-const getResult = (scores: RAISECScores) => {
-  let lessScored = Infinity;
-  let lessScoredKey = "";
-  for (const [key, value] of Object.entries(scores)) {
-    if (value < lessScored) {
-      lessScored = value;
-      lessScoredKey = key;
-    }
+const calculateScores = (respuestas: RespuestasSchemaType) => {
+  
+  if (respuestas.respuestas.some((resp) => resp.puntaje === undefined)) return null
+  
+  let scores:Record<string, number> = {
+    "ARTE Y CREATIVIDAD": 0,
+    "CIENCIAS SOCIALES": 0,
+    "ECONOMICA ADMINISTRATIVA Y FINANCIERA": 0,
+    "CIENCIAS Y TECNOLOGIA": 0,
+    "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD": 0,
   }
-  return results[lessScoredKey as keyof typeof results];
-};
+  respuestas.respuestas.forEach((resp) => {
+    scores[resp.area] += resp.puntaje;
+  })
+  return scores
+}
 
-const calculateScores = (responses: RIASECResponses) => {
-  const scores = {
-    realistic: 0,
-    investigative: 0,
-    artistic: 0,
-    social: 0,
-    enterprising: 0,
-    conventional: 0,
-  };
+const getTheResult = (scores: Record<string, number>) => {
+  let max = 0;
+  let result = "";
+  Object.keys(scores).forEach((key) => {
+    if (scores[key] > max) {
+      max = scores[key];
+      result = key;
+    }
+  });
+  return results[result];
+}
 
-  for (const [key, value] of Object.entries(responses))
-    scores[key as keyof RIASECResponses] += value.reduce((a, b) => a + b, 0);
 
-  return scores;
-};
-
-export { handleBeforeUnload, getResult, calculateScores };
+export { handleBeforeUnload, isPhoneValid, calculateScores, getTheResult };

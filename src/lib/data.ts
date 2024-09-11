@@ -1,210 +1,162 @@
-import {RIASECResponses, RIASECResults, stepState, StepType} from "../lib/definitions";
-import realisticIconUrl from '/img/svg/realistic.svg';
-import investigativeIconUrl from '/img/svg/investigative.svg';
-import artisticIconUrl from '/img/svg/artistic.svg';
-import socialIconUrl from '/img/svg/social.svg';
-import enterprisingIconUrl from '/img/svg/entrepreneur.svg';
-import conventionalIconUrl from '/img/svg/conventional.svg';
+// ICONOS
+import realisticIconUrl from "/img/svg/realistic.svg";
+import investigativeIconUrl from "/img/svg/investigative.svg";
+import artisticIconUrl from "/img/svg/artistic.svg";
+import medicineIconUrl from "/img/svg/medicine.svg";
+import enterprisingIconUrl from "/img/svg/entrepreneur.svg";
 
-export const steps: StepType[] = [
-  {
-    index: 0,
-    state: stepState.active,
-    title: "Informacion Basica",
-  },
-  {
-    index: 1,
-    state: stepState.none,
-    title: "Intereses Prácticos",
-  },
-  {
-    index: 2,
-    state: stepState.none,
-    title: "Aptitudes Investigativas",
-  },
-  {
-    index: 3,
-    state: stepState.none,
-    title: "Expresión Artística",
-  },
-  {
-    index: 4,
-    state: stepState.none,
-    title: "Habilidades Interpersonales",
-  },
-  {
-    index: 5,
-    state: stepState.none,
-    title: "Gestión y Negocios",
-  },
-  {
-    index: 6,
-    state: stepState.none,
-    title: "Eficiencia Administrativa",
-  },
-  {
-    index: 6,
-    state: stepState.results,
-    title: "Resultados",
-  }
+// DEFINICIONES
+import { PreguntaAreaType, ResultType } from "./definitions";
+
+export const preguntasTestVocacional: PreguntaAreaType[] = [
+  // Arte y Creatividad
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Ilustrar, dibujar y animar digitalmente." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Tocar un instrumento y componer música." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Pintar, hacer esculturas, ilustrar libros de arte, etc." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Prepararse para ser modelo profesional." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Diseñar juegos interactivos electrónicos para computadora." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Redactar guiones y libretos para un programa de tv." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Crear campañas publicitarias." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Rediseñar y decorar espacios físicos en viviendas, oficinas y locales comerciales." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Diseñar ropa para niños, jóvenes y adultos de manera sustentable." },
+  { area: "ARTE Y CREATIVIDAD", preguntas: "Restaurar piezas y obras de arte." },
+
+  // Ciencias Sociales
+  { area: "CIENCIAS SOCIALES", preguntas: "Realizar excavaciones para descubrir restos del pasado." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Organizar eventos y atender a sus asistentes." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Defender a clientes individuales o empresas en juicios de diferente naturaleza." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Investigar las causas y efectos de los trastornos emocionales." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Escribir artículos periodísticos, cuentos, novelas y otros." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Estudiar la diversidad cultural en el ámbito rural y urbano." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Gestionar y evaluar convenios internacionales de cooperación para el desarrollo social." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Gestionar y evaluar proyectos de desarrollo en una institución educativa y/o fundación." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Estudiar idiomas extranjeros —actuales y antiguos— para hacer traducción." },
+  { area: "CIENCIAS SOCIALES", preguntas: "Tratar a niños, jóvenes y adultos con problemas psicológicos." },
+
+  // Económica, Administrativa y Financiera
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Seleccionar, capacitar y motivar al personal de una organización o empresa." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Planificar las metas de una organización pública o privada a mediano y largo plazos." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Controlar ingresos y egresos de fondos y presentar el balance final de una institución." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Defender a clientes individuales o empresas en juicios de diferente naturaleza." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Elaborar campañas para introducir un nuevo producto al mercado." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Supervisar las ventas de un centro comercial." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Aconsejar a las personas sobre planes de ahorro e inversiones." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Tener un negocio propio de tipo comercial." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Organizar un plan de distribución y venta de un gran almacén." },
+  { area: "ECONOMICA ADMINISTRATIVA Y FINANCIERA", preguntas: "Administrar una empresa de turismo o agencias de viaje." },
+
+  // Ciencias y Tecnología
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Diseñar programas de computación y explorar nuevas aplicaciones tecnológicas para uso del internet." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Resolver problemas de cálculo para construir un puente." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Diseñar y planificar la producción masiva de artículos como muebles, autos, equipos de oficina, empaques y envases para alimentos y otros." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Concebir planos para viviendas, edificios y ciudadelas." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Investigar y probar nuevos productos farmacéuticos." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Diseñar máquinas que puedan simular actividades humanas." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Elaborar mapas, planos e imágenes para el estudio y análisis de datos geográficos." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Dedicarse a fabricar productos alimenticios de consumo masivo." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Manejar o dar mantenimiento a dispositivos tecnológicos en aviones, barcos, radares, etc." },
+  { area: "CIENCIAS Y TECNOLOGIA", preguntas: "Revisar y dar mantenimiento a artefactos eléctricos, electrónicos y computadoras." },
+
+  // Ciencias Ecológicas, Biológicas y de Salud
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Revisar y dar mantenimiento a artefactos eléctricos, electrónicos y computadoras." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Investigar sobre áreas verdes, medioambiente y cambios climáticos." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Diseñar cursos para enseñar a la gente sobre temas de salud e higiene." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Atender la salud de personas enfermas." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Hacer experimentos con plantas (frutas, árboles, flores)." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Examinar y tratar los problemas visuales." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Atender y realizar ejercicios a personas que tienen limitaciones físicas, problemas de lenguaje, etc." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Realizar el control de calidad de los alimentos." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Investigar organismos vivos para elaborar vacunas." },
+  { area: "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD", preguntas: "Atender la salud dental de las personas." },
 ];
 
-export const preguntasRIASEC = [
-  // Realista (R)
-  [
-      "¿Disfrutas trabajar con tus manos, construyendo o reparando cosas?",
-      "¿Te gustaría operar maquinaria o herramientas pesadas?",
-      "¿Prefieres trabajos que involucren actividades físicas al aire libre?",
-      "¿Te sientes cómodo siguiendo instrucciones detalladas para ensamblar algo?",
-      "¿Te interesan los trabajos que requieren destrezas manuales o técnicas?",
-      "¿Te gustaría trabajar en la agricultura, la construcción o la mecánica?",
-      "¿Te interesa aprender cómo funcionan las máquinas o sistemas mecánicos?",
-      "¿Te sientes realizado cuando terminas una tarea física o un proyecto práctico?"
-  ],
-  // Investigador (I)
-  [
-      "¿Disfrutas resolver problemas complejos y abstractos?",
-      "¿Te interesa investigar nuevos descubrimientos científicos?",
-      "¿Te gustaría trabajar en un laboratorio realizando experimentos?",
-      "¿Te gusta analizar datos y encontrar patrones en la información?",
-      "¿Prefieres trabajos que involucren pensamiento lógico y análisis profundo?",
-      "¿Te interesan las matemáticas, la física o la biología?",
-      "¿Te gustaría investigar y desarrollar nuevas tecnologías?",
-      "¿Te sientes satisfecho cuando encuentras una solución lógica a un problema?"
-  ],
-  // Artístico (A)
-  [
-      "¿Disfrutas expresarte a través de la música, la pintura o la escritura?",
-      "¿Te gustaría trabajar en un entorno creativo, como un estudio de arte o un teatro?",
-      "¿Prefieres trabajos que te permitan ser original y usar tu imaginación?",
-      "¿Te interesa el diseño gráfico, la moda o la fotografía?",
-      "¿Te gustaría desarrollar tus propias ideas artísticas y proyectos personales?",
-      "¿Te sientes cómodo en situaciones donde se valora la originalidad y la innovación?",
-      "¿Te gustaría trabajar en la producción de cine, televisión o medios digitales?",
-      "¿Te sientes realizado cuando creas algo que exprese tus sentimientos o ideas?"
-  ],
-  // Social (S)
-  [
-      "¿Disfrutas ayudar a los demás y trabajar en equipo?",
-      "¿Te gustaría trabajar en la educación, la salud o el trabajo social?",
-      "¿Prefieres trabajos que impliquen interacción con personas y apoyo emocional?",
-      "¿Te interesa enseñar, entrenar o guiar a otros?",
-      "¿Te gustaría trabajar en un entorno donde puedas hacer una diferencia en la vida de las personas?",
-      "¿Te sientes satisfecho cuando ayudas a alguien a resolver un problema personal?",
-      "¿Te interesa aprender sobre psicología, sociología o servicios humanos?",
-      "¿Te sientes realizado cuando contribuyes al bienestar de los demás?"
-  ],
-  // Emprendedor (E)
-  [
-      "¿Disfrutas liderar proyectos y tomar decisiones?",
-      "¿Te gustaría iniciar y gestionar tu propio negocio?",
-      "¿Prefieres trabajos que involucren negociar, vender o persuadir?",
-      "¿Te interesa trabajar en el mundo de los negocios, el marketing o la gestión?",
-      "¿Te gustaría dirigir un equipo y asumir roles de liderazgo?",
-      "¿Te sientes cómodo asumiendo riesgos para alcanzar tus metas?",
-      "¿Te interesa aprender sobre finanzas, economía o estrategia empresarial?",
-      "¿Te sientes realizado cuando alcanzas objetivos ambiciosos y logras el éxito?"
-  ],
-  // Convencional (C)
-  [
-      "¿Disfrutas trabajar en tareas que requieren organización y atención al detalle?",
-      "¿Te gustaría trabajar en un entorno estructurado con reglas claras?",
-      "¿Prefieres trabajos que impliquen seguir procedimientos y rutinas establecidas?",
-      "¿Te interesa la contabilidad, la administración o la gestión de datos?",
-      "¿Te gustaría mantener registros, archivar documentos o gestionar información?",
-      "¿Te sientes cómodo en trabajos donde la precisión y la exactitud son importantes?",
-      "¿Te interesa aprender sobre software de oficina, bases de datos o gestión de archivos?",
-      "¿Te sientes realizado cuando completas tareas administrativas de manera eficiente?"
-  ]
-];
-
-export const results: { [key in keyof RIASECResponses]: RIASECResults } = {
-  realistic: {
-    title: "Realista",
+export const results:Record<string, ResultType> = {
+  "CIENCIA Y TECNOLOGIA": {
+    title: "Ciencia y Tecnología",
     description:
-      "Las personas con un perfil realista son prácticas, directas y prefieren trabajar con herramientas, maquinaria o actividades físicas. Les gusta resolver problemas concretos y disfrutar de tareas que implican acción y movimiento. Son individuos que se sienten cómodos en entornos que requieren habilidades mecánicas, manuales o técnicas.",
+      "Las personas con un perfil técnico y lógico disfrutan resolviendo problemas complejos mediante el uso de herramientas tecnológicas, matemáticas y científicas. Les gusta investigar, experimentar y aplicar el conocimiento para mejorar procesos y diseñar nuevas soluciones. Su interés por el detalle y la precisión los hace destacar en campos relacionados con la innovación tecnológica y el análisis.",
     carrerasRelacionadas: [
-      "Ingeniería Electromecánica",
       "Ingeniería Civil",
-      "Ineniería Industrial",
-      "Tecnología en Construcción",
+      "Ingeniería Electromecánica",
+      "Ingeniería Industrial",
+      "Ingeniería Informática",
+      "Física",
+      "Matemáticas",
+      "Ingeniería en Estadística",
+      "Biotecnología Ambiental",
     ],
     svg: realisticIconUrl,
   },
 
-  investigative: {
-    title: "Investigador",
+  "CIENCIAS SOCIALES": {
+    title: "Ciencias Sociales",
     description:
-      "Los individuos con un perfil investigador son analíticos, curiosos y disfrutan del pensamiento abstracto y de la investigación. Les interesa comprender cómo funcionan las cosas y suelen ser buenos en la resolución de problemas complejos, así como en la recopilación y análisis de datos. Prefieren trabajar en proyectos que requieran reflexión profunda y dedicación.",
+      "Las personas con un perfil enfocado en las ciencias sociales son empáticas, analíticas y tienen un fuerte interés por comprender y mejorar las interacciones humanas y sociales. Les apasiona estudiar el comportamiento humano, las culturas, las estructuras sociales y el bienestar colectivo. Son hábiles para investigar, escribir y trabajar en equipo en áreas que promueven el desarrollo y la justicia social.",
     carrerasRelacionadas: [
-      "Física",
-      "Química",
-      "Biología",
-      "Medicina",
-      "Matemáticas",
-      "Estadística",
+      "Psicología",
+      "Trabajo Social",
+      "Idiomas",
+      "Historia y Geografía",
+      "Periodismo",
+      "Psicopedagogía",
+      "Relaciones Internacionales y Diplomáticas",
+      "Ciencias Políticas",
+      "Derecho"
     ],
     svg: investigativeIconUrl,
   },
 
-  artistic: {
-    title: "Artístico",
+  "ARTE Y CREATIVIDAD": {
+    title: "Arte y Creatividad",
     description:
-      "Las personas con un perfil artístico son creativas, expresivas y disfrutan de actividades que les permiten innovar y utilizar su imaginación. Prefieren trabajar en entornos flexibles y no estructurados donde pueden explorar sus ideas y conceptos únicos. Tienen una fuerte inclinación por las artes visuales, escénicas o literarias.",
+      "Las personas creativas y artísticas disfrutan expresarse a través de formas visuales, musicales o literarias. Tienen una fuerte imaginación y suelen buscar formas innovadoras de representar ideas y emociones. Prefieren entornos de trabajo flexibles donde pueden experimentar con nuevos conceptos y técnicas, y les motiva la posibilidad de influir culturalmente a través de su obra.",
     carrerasRelacionadas: [
-      "Bellas Artes",
       "Diseño Gráfico",
-      "Literatura",
+      "Diseño y Decoración de Interiores",
+      "Diseño de Modas",
       "Teatro",
       "Música",
       "Cine y Televisión",
-      "Diseño",
+      "Producción Audiovisual",
       "Fotografía",
     ],
     svg: artisticIconUrl,
   },
 
-  social: {
-    title: "Social",
+  "ECONOMICA ADMINISTRATIVA Y FINANCIERA": {
+    title: "Económica Administrativa y Financiera",
     description:
-      "Las personas con un perfil social son empáticas, comunicativas y disfrutan ayudando a los demás. Tienen fuertes habilidades interpersonales y prefieren trabajar en entornos colaborativos. Les motiva enseñar, orientar, asesorar o prestar servicio a otras personas. Su satisfacción proviene del impacto positivo que pueden tener en la vida de otros.",
+      "Las personas interesadas en el área económica, administrativa y financiera disfrutan gestionando recursos, planificando estrategias y tomando decisiones que influyen en el éxito de organizaciones. Tienen habilidades para la organización, la negociación y la solución de problemas empresariales. Les atraen los desafíos de liderar equipos, optimizar procesos y maximizar el rendimiento financiero.",
     carrerasRelacionadas: [
-      "Psicología",
-      "Trabajo Social",
-      "Pedagogía",
-      "Enfermería",
-      "Sociología",
-    ],
-    svg: socialIconUrl,
-  },
-
-  enterprising: {
-    title: "Emprendedor",
-    description:
-      "Las personas con un perfil emprendedor son líderes naturales, persuasivas y disfrutan asumiendo riesgos. Les atraen las actividades que implican liderazgo, negociación y toma de decisiones. Prefieren trabajar en entornos competitivos donde puedan influir y dirigir a otros hacia la consecución de metas organizacionales.",
-    carrerasRelacionadas: [
-      "Administración",
-      "Contabilidad",
-      "Economía",
       "Administración de Empresas",
-      "Derecho",
+      "Contabilidad",
+      "Auditoría",
+      "Ventas",
+      "Marketing",
+      "Banca y Finanzas",
+      "Ciencias Económicas y Financieras",
+      "Gestión de Recursos Humanos",
+      "Emprendimiento"
     ],
     svg: enterprisingIconUrl,
   },
 
-  conventional: {
-    title: "Convencional",
+  "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD": {
+    title: "Ciencias Ecológicas, Biológicas y de Salud",
     description:
-      "Las personas con un perfil convencional son organizadas, metódicas y prefieren seguir procedimientos claros y definidos. Les gusta trabajar con datos, manejar información y desempeñar tareas que requieren precisión y detalle. Se sienten cómodas en roles que demandan organización y administración eficiente.",
+      "Las personas interesadas en las ciencias biológicas, ecológicas y de la salud son apasionadas por el bienestar humano y ambiental. Disfrutan investigar organismos vivos, cuidar la salud de las personas y contribuir a la sostenibilidad del medioambiente. Son individuos comprometidos con el cuidado de los ecosistemas y la mejora de la calidad de vida a través de la ciencia y la medicina.",
     carrerasRelacionadas: [
-      "Auxiliar Contable",
-      "Finanzas",
-      "Administración Pública",
-      "Gestión de la Información",
-      "Archivística",
-      "Gestión de Proyectos",
-      "Secretariado",
+      "Medicina",
+      "Biología",
+      "Bioquímica",
+      "Farmacología",
+      "Ciencias Ambientales",
+      "Odontología",
+      "Agronomía",
+      "Veterinaria",
+      "Enfermería"
     ],
-    svg: conventionalIconUrl,
+    svg: medicineIconUrl,
   },
 };
+

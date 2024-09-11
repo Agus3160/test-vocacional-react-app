@@ -3,7 +3,8 @@ import HomePage from "./pages/home/HomePage";
 import NavBar from "./components/nav/NavBar";
 import AboutPage from "./pages/about/AboutPage";
 import RouteNotFound from "./pages/RouteNotFound";
-import VocationPage from "./pages/vocational-test/VocationPage";
+import TestVocacionalFormContextProvider from "./provider/TestVocacionalFormContextProvider";
+import StepManager from "./pages/vocational-test/StepManager";
 
 function App() {
   return (
@@ -12,7 +13,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
-        <Route path="test-vocation" element={<VocationPage />} />
+        <Route
+          path="test-vocation"
+          element={<TestVocacionalFormContextProvider />}
+        >
+          <Route path="step/:stepId" element={<StepManager />} />
+        </Route>
         <Route path="*" element={<RouteNotFound />} />
       </Routes>
     </>

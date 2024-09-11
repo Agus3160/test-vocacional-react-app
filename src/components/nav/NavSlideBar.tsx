@@ -5,9 +5,10 @@ import { navItems } from "./data";
 
 type Props = {
   setShowMenu: (value: boolean) => void;
+  hide: boolean
 };
 
-export default function NavSlideBar({ setShowMenu }: Props) {
+export default function NavSlideBar({ setShowMenu, hide }: Props) {
 
   const onChangePathHandler = () => {
     setShowMenu(false);
@@ -29,7 +30,7 @@ export default function NavSlideBar({ setShowMenu }: Props) {
     <>
       <nav className="bg-gray-200 dark:bg-gray-800 dark:text-gray-200 w-3/4 h-auto text-black absolute sm:hidden fixed rounded right-2 top-[72px] shadow z-10 duration-200 ">
         <ul className="flex flex-col divide-y dark:divide-gray-600 divide-gray-400 w-full items-center">
-          {navItems.map((item) => (
+          {!hide && navItems.map((item) => (
             <Link
               onClick={onChangePathHandler}
               key={item.title}

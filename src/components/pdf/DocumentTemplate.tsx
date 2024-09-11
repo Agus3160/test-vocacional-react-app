@@ -1,5 +1,5 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-import {RIASECResults} from "../../lib/definitions";
+import { ResultType } from "../../lib/definitions";
 
 const styles = StyleSheet.create({
   page: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 type Props = {
   nombre: string;
   apellido: string;
-  resultado: RIASECResults;
+  resultado: ResultType;
 };
 
 // Create Document Component

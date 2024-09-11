@@ -1,4 +1,7 @@
 import z from "zod";
+import { isPhoneValid } from "./util";
+
+/********************** FORMULARIO TYPES **************************/
 
 export const userBasicInfoSchema = z.object({
   nombre: z
@@ -9,144 +12,92 @@ export const userBasicInfoSchema = z.object({
     .string()
     .min(1, "El apellido es requerido")
     .max(50, "El apellido es demasiado extenso (Max. 50 caracteres)"),
+  ci: z
+    .string()
+    .min(5, "El CI es requerido (Min. 5 caracteres)")
+    .regex(/^\d+$/, {
+      message: "Solo puede contener numeros.",
+    }),
+  genero: z.enum(["Masculino", "Femenino", "Prefiero no decirlo"]),
   correo: z
     .string()
     .email("El correo no es valido")
     .optional()
-    .optional()
     .or(z.literal("")),
+  telCodigoPais: z.string().optional().or(z.literal("")),
+  tel: z
+  .string()
+  .optional() // El campo sigue siendo opcional
+  .refine((v) => {
+    if (!v) return true;
+    return v.trim() === "" || v.trim().split(" ").length == 1 || isPhoneValid(v);
+  }, { message: "El teléfono no es válido" }),
+  carrerasPreferencias: z.string().array().optional(),
 });
 export type UserBasicInfo = z.infer<typeof userBasicInfoSchema>;
 
-export enum stepState {
-  active = "active",
-  finished = "finished",
-  none = "none",
-  results = "results",
-}
+export const respuestasSchema = z.object({
+  respuestas: z.array(
+    z.object({
+      puntaje: z.number().min(0).max(1),
+      area: z.enum([
+        "ARTE Y CREATIVIDAD",
+        "CIENCIAS SOCIALES",
+        "ECONOMICA ADMINISTRATIVA Y FINANCIERA",
+        "CIENCIAS Y TECNOLOGIA",
+        "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD",
+      ]),
+    })
+  ),
+});
+export type RespuestasSchemaType = z.infer<typeof respuestasSchema>;
 
-export type ScoreResponse = {
-  [key: string]: number;
+export const formProviderSchema = z.object({
+  informacionBasicaUsuario: userBasicInfoSchema,
+  preguntas: respuestasSchema,
+});
+export type TypeFormProvider = z.infer<typeof formProviderSchema>;
+
+/************************* AREAS ****************************/
+
+export type EnumAreas =
+  | "ARTE Y CREATIVIDAD"
+  | "CIENCIAS SOCIALES"
+  | "ECONOMICA ADMINISTRATIVA Y FINANCIERA"
+  | "CIENCIAS Y TECNOLOGIA"
+  | "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD";
+
+/********************* USER CONTEXT **************************/
+
+export type UserTestSession = UserBasicInfo & {
+  resultado: string;
+  token: string;
 };
 
-export type FormContextValueType = {
-  nombre: string;
-  apellido: string;
-  correo?: string;
-  steps: StepType[];
-  currentStep: number;
-  responses: RIASECResponses;
-};
-
-export type StepType = {
-  index: number;
-  state: stepState;
-  title: string;
-};
-
-export type FormContextType = {
-  formValues: FormContextValueType;
+export type UserContextType = {
+  //Values
+  user: UserTestSession | null;
 
   //Functions
-
-  //Managing the steps
-  setStepByIndex: (newState: stepState, index: number) => void;
-  setUpSteps: (steps: StepType[]) => void;
-  nextStep: () => void;
-  prevStep: () => void;
-  setCurrentStep: (newStep: number) => void;
-
-  //Change all the values of the form
-  setFormValues: (context: FormContextValueType) => void;
-
-  //Change individual values
-  setResponses: (index: keyof RIASECResponses, value: number[]) => void;
+  getToken: () => string;
+  setUser: (user: UserTestSession) => void;
 };
 
-export type FormContextProviderParams = {
-  steps?: StepType[];
-  children: JSX.Element;
-  asksQuantity?: number;
+/*************************** UTILS **************************/
+
+export type PreguntaAreaType = {
+  area:
+    | "ARTE Y CREATIVIDAD"
+    | "CIENCIAS SOCIALES"
+    | "ECONOMICA ADMINISTRATIVA Y FINANCIERA"
+    | "CIENCIAS Y TECNOLOGIA"
+    | "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD";
+  preguntas: string;
 };
 
-export type RIASECResponses = {
-  realistic: number[];
-  investigative: number[];
-  artistic: number[];
-  social: number[];
-  enterprising: number[];
-  conventional: number[];
-};
-
-export type RIASECResults = {
+export type ResultType = {
   title: string;
   description: string;
   carrerasRelacionadas: string[];
   svg: string;
 };
-
-export type RAISECScores = {
-  realistic: number;
-  investigative: number;
-  artistic: number;
-  social: number;
-  enterprising: number;
-  conventional: number;
-};
-
-export const testValues = {
-  nombre: "Agustin",
-  apellido: "Oviedo",
-  correo: undefined,
-  steps: [
-    {
-      index: 0,
-      state: stepState.active,
-      title: "Informacion Basica",
-    },
-    {
-      index: 1,
-      state: stepState.none,
-      title: "Intereses Prácticos",
-    },
-    {
-      index: 2,
-      state: stepState.none,
-      title: "Aptitudes Investigativas",
-    },
-    {
-      index: 3,
-      state: stepState.none,
-      title: "Expresión Artística",
-    },
-    {
-      index: 4,
-      state: stepState.none,
-      title: "Habilidades Interpersonales",
-    },
-    {
-      index: 5,
-      state: stepState.none,
-      title: "Gestión y Negocios",
-    },
-    {
-      index: 6,
-      state: stepState.none,
-      title: "Eficiencia Administrativa",
-    },
-    {
-      index: 6,
-      state: stepState.results,
-      title: "Resultados",
-    }
-  ],
-  currentStep: 7,
-  responses: {
-    realistic: [0, 0, 0, 4, 0, 0],
-    investigative: [0, 0, 0, 0, 0, 0],
-    artistic: [0, 4, 0, 0, 0, 0],
-    social: [0, 0, 4, 5, 0, 0],
-    enterprising: [4, 5, 0, 0, 0, 0],
-    conventional: [0, 0, 0, 5, 0, 0],
-  }
-}

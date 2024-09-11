@@ -10,12 +10,9 @@ export const navItems: NavItem[] = [
     to: "/",
   },
   {
-    title: "Test",
-    to: "/test-vocation",
-  },
-  {
     title: "About",
     to: "/about",
   },
 ];
 
+export const hiddenRoutes = ["/test-vocation/step"];

@@ -17,7 +17,7 @@ export default function HomePage() {
                 universitaria que mejor se adapta a ti.
               </p>
               <Link
-                to={"/test-vocation"}
+                to={"/test-vocation/step/1"}
                 className="duration-100 dark:text-gray-200 hover:scale-105 text-white bg-red-500 p-2 text-xl rounded outline-none"
               >
                 Empezar
@@ -26,7 +26,6 @@ export default function HomePage() {
             <img src={panelImgUrl} className=" animate-float h-auto" />
           </div>
         </div>
-
         <CarouselCard minHeight={200} cards={cardList} />
       </div>
     </main>

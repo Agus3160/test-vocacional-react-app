@@ -1,28 +1,15 @@
-export const scoreStyleOneToFiveEmoji = [
+import { OpcionesCardType } from "./ScoreInput";
+
+export const puntajesDosOpcionesEmojiStyle:OpcionesCardType[] = [
   {
-    value: 4,
-    desc: "😡",
-    label: "Muy en desacuerdo",
+    puntaje: 0,
+    desc: "😴",
+    label: "No me interesa",
   },
   {
-    value: 3,
-    desc: "😠",
-    label: "En desacuerdo",
-  },
-  {
-    value: 2,
-    desc: "😐",
-    label: "Neutral",
-  },
-  {
-    value: 1,
-    desc: "🙂",
-    label: "De acuerdo",
-  },
-  {
-    value: 0,
+    puntaje: 1,
     desc: "😁",
-    label: "Muy deacuerdo",
+    label: "Me interesa",
   },
 ];
 
