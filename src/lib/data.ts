@@ -71,8 +71,8 @@ export const preguntasTestVocacional: PreguntaAreaType[] = [
 ];
 
 export const results:Record<string, ResultType> = {
-  "CIENCIA Y TECNOLOGIA": {
-    title: "Ciencia y Tecnología",
+  "CIENCIAS Y TECNOLOGIA": {
+    titulo: "Ciencia y Tecnología",
     description:
       "Las personas con un perfil técnico y lógico disfrutan resolviendo problemas complejos mediante el uso de herramientas tecnológicas, matemáticas y científicas. Les gusta investigar, experimentar y aplicar el conocimiento para mejorar procesos y diseñar nuevas soluciones. Su interés por el detalle y la precisión los hace destacar en campos relacionados con la innovación tecnológica y el análisis.",
     carrerasRelacionadas: [
@@ -89,7 +89,7 @@ export const results:Record<string, ResultType> = {
   },
 
   "CIENCIAS SOCIALES": {
-    title: "Ciencias Sociales",
+    titulo: "Ciencias Sociales",
     description:
       "Las personas con un perfil enfocado en las ciencias sociales son empáticas, analíticas y tienen un fuerte interés por comprender y mejorar las interacciones humanas y sociales. Les apasiona estudiar el comportamiento humano, las culturas, las estructuras sociales y el bienestar colectivo. Son hábiles para investigar, escribir y trabajar en equipo en áreas que promueven el desarrollo y la justicia social.",
     carrerasRelacionadas: [
@@ -107,7 +107,7 @@ export const results:Record<string, ResultType> = {
   },
 
   "ARTE Y CREATIVIDAD": {
-    title: "Arte y Creatividad",
+    titulo: "Arte y Creatividad",
     description:
       "Las personas creativas y artísticas disfrutan expresarse a través de formas visuales, musicales o literarias. Tienen una fuerte imaginación y suelen buscar formas innovadoras de representar ideas y emociones. Prefieren entornos de trabajo flexibles donde pueden experimentar con nuevos conceptos y técnicas, y les motiva la posibilidad de influir culturalmente a través de su obra.",
     carrerasRelacionadas: [
@@ -124,7 +124,7 @@ export const results:Record<string, ResultType> = {
   },
 
   "ECONOMICA ADMINISTRATIVA Y FINANCIERA": {
-    title: "Económica Administrativa y Financiera",
+    titulo: "Económica Administrativa y Financiera",
     description:
       "Las personas interesadas en el área económica, administrativa y financiera disfrutan gestionando recursos, planificando estrategias y tomando decisiones que influyen en el éxito de organizaciones. Tienen habilidades para la organización, la negociación y la solución de problemas empresariales. Les atraen los desafíos de liderar equipos, optimizar procesos y maximizar el rendimiento financiero.",
     carrerasRelacionadas: [
@@ -142,7 +142,7 @@ export const results:Record<string, ResultType> = {
   },
 
   "CIENCIAS ECOLOGICAS, BIOLOGICAS Y DE SALUD": {
-    title: "Ciencias Ecológicas, Biológicas y de Salud",
+    titulo: "Ciencias Ecológicas, Biológicas y de Salud",
     description:
       "Las personas interesadas en las ciencias biológicas, ecológicas y de la salud son apasionadas por el bienestar humano y ambiental. Disfrutan investigar organismos vivos, cuidar la salud de las personas y contribuir a la sostenibilidad del medioambiente. Son individuos comprometidos con el cuidado de los ecosistemas y la mejora de la calidad de vida a través de la ciencia y la medicina.",
     carrerasRelacionadas: [

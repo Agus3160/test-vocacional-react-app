@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^1.11.0",
     "@hookform/resolvers": "3.9.0",
     "@react-pdf/renderer": "^3.4.4",
     "@uidotdev/usehooks": "2.4.1",
@@ -20,9 +21,8 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "7.53.0",
     "react-international-phone": "^4.3.0",
-    "react-phone-input-2": "^2.15.1",
-    "react-phone-number-input": "^3.4.5",
     "react-router-dom": "6.26.1",
+    "react-toastify": "^10.0.5",
     "test-vocacion": "file:",
     "zod": "3.23.8"
   },

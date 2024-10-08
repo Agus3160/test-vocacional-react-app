@@ -60,7 +60,7 @@ const DocumentTemplate = ({ nombre, apellido, resultado }: Props) => (
         <Text>{nombre} {apellido}</Text>
       </View>
       <View>
-        <Text style={styles.subtitle}>{resultado.title}</Text>
+        <Text style={styles.subtitle}>{resultado.titulo}</Text>
         <Text style={styles.paragraph}>{resultado.description}</Text>
       </View>
       <View style={styles.description}>

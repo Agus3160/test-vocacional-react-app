@@ -21,17 +21,28 @@ export const userBasicInfoSchema = z.object({
   genero: z.enum(["Masculino", "Femenino", "Prefiero no decirlo"]),
   correo: z
     .string()
-    .email("El correo no es valido")
     .optional()
-    .or(z.literal("")),
+    .transform((v) => (v?.trim() === "" ? undefined : v))
+    .refine((v) => v === undefined || z.string().email().safeParse(v).success, {
+      message: "El correo no es válido",
+    }),
   telCodigoPais: z.string().optional().or(z.literal("")),
   tel: z
-  .string()
-  .optional() // El campo sigue siendo opcional
-  .refine((v) => {
-    if (!v) return true;
-    return v.trim() === "" || v.trim().split(" ").length == 1 || isPhoneValid(v);
-  }, { message: "El teléfono no es válido" }),
+    .string()
+    .optional()
+    .transform((v) => {
+      const parts = v ? v.trim().split(" ") : [];
+      return parts.length <= 1 ? undefined : v;
+    })
+    .refine(
+      (v) => {
+        if (!v) return true;
+        return (
+          v.trim() === "" || v.trim().split(" ").length == 1 || isPhoneValid(v)
+        );
+      },
+      { message: "El teléfono no es válido" }
+    ),
   carrerasPreferencias: z.string().array().optional(),
 });
 export type UserBasicInfo = z.infer<typeof userBasicInfoSchema>;
@@ -55,6 +66,9 @@ export type RespuestasSchemaType = z.infer<typeof respuestasSchema>;
 export const formProviderSchema = z.object({
   informacionBasicaUsuario: userBasicInfoSchema,
   preguntas: respuestasSchema,
+  captchaToken: z.string({ required_error: "El captcha es requerido" }).min(1, {
+    message: "El captcha es requerido",
+  }),
 });
 export type TypeFormProvider = z.infer<typeof formProviderSchema>;
 
@@ -85,6 +99,27 @@ export type UserContextType = {
 
 /*************************** UTILS **************************/
 
+export const encuestadoApiSchema = userBasicInfoSchema
+  .pick({
+    nombre: true,
+    apellido: true,
+    ci: true,
+    correo: true,
+    tel: true,
+  })
+  .extend({
+    genero: z.enum(["MASCULINO", "FEMENINO", "PREFIERO_NO_DECIRLO"]),
+  });
+export type EncuestadoApiSchemaType = z.infer<typeof encuestadoApiSchema>;
+
+export type ResultPayload = {
+  resultado: {
+    titulo: string;
+  };
+  captchaToken: string;
+  encuestado: EncuestadoApiSchemaType;
+};
+
 export type PreguntaAreaType = {
   area:
     | "ARTE Y CREATIVIDAD"
@@ -96,7 +131,7 @@ export type PreguntaAreaType = {
 };
 
 export type ResultType = {
-  title: string;
+  titulo: string;
   description: string;
   carrerasRelacionadas: string[];
   svg: string;

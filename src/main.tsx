@@ -1,16 +1,16 @@
 import "./index.css";
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import ToastProvider from "./provider/ToastProvider";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider initTheme={false}>
+  <BrowserRouter>
+    <ThemeProvider initTheme={false}>
+      <ToastProvider>
         <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </StrictMode>
+      </ToastProvider>
+    </ThemeProvider>
+  </BrowserRouter>
 );

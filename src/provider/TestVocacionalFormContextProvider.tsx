@@ -8,6 +8,7 @@ import { handleBeforeUnload } from "../lib/util";
 
 export default function TestVocacionalFormContextProvider() {
   const methods = useForm<TypeFormProvider>({
+    mode: "all",
     resolver: zodResolver(formProviderSchema),
     defaultValues: {
       preguntas: {

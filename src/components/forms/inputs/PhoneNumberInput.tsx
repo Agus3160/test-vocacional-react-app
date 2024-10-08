@@ -16,6 +16,7 @@ export interface PhoneInputProps {
     country?: CountryIso2;
     phone?: string
   }
+  id?: string;
   error?: string;
   name?: string;
 }
@@ -27,6 +28,7 @@ export const PhoneNumberInput: React.FC<PhoneInputProps> = ({
   inputStyles = "",
   error,
   defaultValues,
+  id,
   name
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -51,6 +53,7 @@ export const PhoneNumberInput: React.FC<PhoneInputProps> = ({
     <div className="relative flex flex-col gap-1">
       <input
         type="tel"
+        id={id}
         name={name}
         value={inputValue}
         onChange={handlePhoneValueChange}

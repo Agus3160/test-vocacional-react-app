@@ -6,6 +6,7 @@ type Props = {
   icon?: "info" | "warning" | "error";
   children?: React.ReactNode;
   className?: string;
+  containerClassName?: string;
 };
 
 export default function Modal({
@@ -13,17 +14,18 @@ export default function Modal({
   icon,
   children,
   className = "",
+  containerClassName = "",
 }: Props) {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "auto";
     };
   })
 
   return (
-    <div className={`absolute inset-0 w-full z-50 h-full bg-black bg-opacity-80 flex justify-center items-center`}>
+    <div className={`fixed inset-0 w-screen z-50 h-screen bg-black bg-opacity-80 flex justify-center items-center ${containerClassName}`}>
       <div className={`bg-gray-200 dark:bg-gray-800 p-4 rounded ${className}`}>
         <div className="flex gap-2 dark:text-gray-300 text-gray-800 items-center justify-center">
           {icon && icon === "info" ? (

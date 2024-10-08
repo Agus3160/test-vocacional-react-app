@@ -127,6 +127,7 @@ export default function BasicUserInfo() {
             Telefono
           </label>
           <PhoneNumberInput
+            id="telefono"
             defaultValues={initValuesPhone}
             name="telefono"
             error={errors.informacionBasicaUsuario?.tel?.message}

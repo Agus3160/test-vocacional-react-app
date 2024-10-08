@@ -1,6 +1,5 @@
 import { PhoneNumberUtil } from 'google-libphonenumber';
 import { RespuestasSchemaType } from './definitions';
-import { results } from './data';
 
 const phoneUtil = PhoneNumberUtil.getInstance();
 
@@ -19,10 +18,7 @@ const handleBeforeUnload = (event: BeforeUnloadEvent) => {
   return message;
 };
 
-const calculateScores = (respuestas: RespuestasSchemaType) => {
-  
-  if (respuestas.respuestas.some((resp) => resp.puntaje === undefined)) return null
-  
+const calculateScores = (respuestas: RespuestasSchemaType) => {  
   let scores:Record<string, number> = {
     "ARTE Y CREATIVIDAD": 0,
     "CIENCIAS SOCIALES": 0,
@@ -33,6 +29,7 @@ const calculateScores = (respuestas: RespuestasSchemaType) => {
   respuestas.respuestas.forEach((resp) => {
     scores[resp.area] += resp.puntaje;
   })
+
   return scores
 }
 
@@ -45,7 +42,7 @@ const getTheResult = (scores: Record<string, number>) => {
       result = key;
     }
   });
-  return results[result];
+  return result;
 }
 
 
