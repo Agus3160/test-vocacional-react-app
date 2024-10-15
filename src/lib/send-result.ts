@@ -7,7 +7,6 @@ import { calculateScores, getTheResult } from "./util";
 
 const sendResult = async (data: TypeFormProvider): Promise<string> => {
   const { captchaToken, informacionBasicaUsuario, preguntas } = data;
-  console.log(data);
   const encuestado: EncuestadoApiSchemaType = {
     nombre: informacionBasicaUsuario.nombre,
     apellido: informacionBasicaUsuario.apellido,
@@ -26,11 +25,11 @@ const sendResult = async (data: TypeFormProvider): Promise<string> => {
   const resultFieldName = getTheResult(scores);
   const resultado = results[resultFieldName];
 
-  console.log('Result Field Name:', resultFieldName);
-  console.log('Result:', resultado);
+  if (!resultado || !resultado.titulo)
+    throw new Error(
+      `No se ha encontrado un resultado con este campo ${resultFieldName}`
+    );
 
-  if (!resultado || !resultado.titulo) throw new Error(`No se ha encontrado un resultado con este campo ${resultFieldName}`);
-  
   const doc = DocumentTemplate({
     nombre: encuestado.nombre,
     apellido: encuestado.apellido,
@@ -43,7 +42,7 @@ const sendResult = async (data: TypeFormProvider): Promise<string> => {
 
   formData.append("file", docPdfFile);
   formData.append("encuestado", JSON.stringify(encuestado));
-  formData.append("resultado", JSON.stringify({ titulo: resultado.titulo }));
+  formData.append("resultadoTitle", JSON.stringify(resultFieldName));
   formData.append("captchaToken", captchaToken);
 
   await fetchApi("resultado/encuestado", {

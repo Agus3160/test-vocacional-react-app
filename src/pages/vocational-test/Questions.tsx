@@ -65,7 +65,7 @@ export default function Questions() {
       toastSuccess("Formulario enviado exitosamente");
     }catch(e){
       if(e instanceof Error) toastError(e.message);
-      toastError("Ha ocurrio un error al enviar el formulario");
+      else toastError("Ha ocurrio un error al enviar el formulario");
     }
   };
 

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginVertical: 10,    
+    marginVertical: 10,
     flexWrap: "wrap",
   },
   personalDetails: {
@@ -54,19 +54,28 @@ const DocumentTemplate = ({ nombre, apellido, resultado }: Props) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View>
-        <Text style={styles.title}>RESULTADO TEST VOCACIONAL RIASEC</Text>
+        <Text style={styles.title}>RESULTADO TEST VOCACIONAL</Text>
       </View>
       <View style={styles.personalDetails}>
-        <Text>{nombre} {apellido}</Text>
+        <Text>
+          {nombre} {apellido}
+        </Text>
       </View>
       <View>
         <Text style={styles.subtitle}>{resultado.titulo}</Text>
         <Text style={styles.paragraph}>{resultado.description}</Text>
       </View>
       <View style={styles.description}>
-        <Text style={styles.subtitle}>¿Qué es RIASEC?</Text>
+        <Text style={styles.subtitle}>¿De qué se trata este test?</Text>
         <Text style={styles.paragraph}>
-          El modelo RIASEC, desarrollado por el psicólogo John Holland, clasifica las carreras y ocupaciones en seis tipos principales: Realista, Investigador, Artístico, Social, Emprendedor y Convencional. Cada tipo representa un conjunto de intereses y habilidades que ayudan a identificar las carreras que podrían ser más satisfactorias para una persona.
+          Este test es una herramienta de orientación vocacional diseñada para
+          ayudar a los estudiantes a identificar sus intereses y preferencias
+          profesionales. Consiste en una serie de actividades que los
+          participantes deben evaluar marcando si les interesan o no. Al
+          finalizar, los resultados permiten determinar las áreas de mayor
+          interés, facilitando la búsqueda de carreras alineadas con sus
+          inclinaciones. Test elaborado por las psicólogas Malca de Goldenberg y
+          Magali Merchán
         </Text>
       </View>
       <View style={styles.dateAndTime}>

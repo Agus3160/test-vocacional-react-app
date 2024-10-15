@@ -62,7 +62,7 @@ export default function GenericForm<T extends FieldValues>({
           type={type}
           autoComplete={autoComplete}
           required={required}
-          errors={errors}
+          errors={errors[name]?.message as string}
           placeholder={placeholder}
           advice={advice}
         />

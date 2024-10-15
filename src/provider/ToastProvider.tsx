@@ -1,6 +1,7 @@
 import React from "react";
 import { ToastContainer, ToastPosition } from "react-toastify";
 import { useTheme } from "../context/ThemeContext";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {
   children: React.ReactNode;
