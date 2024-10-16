@@ -20,6 +20,7 @@ function App() {
         >
           <Route path="step/:stepId" element={<StepManager />} />
           <Route path="result/:result" element={<Results />} />
+          <Route path="*" element={<RouteNotFound />} />
         </Route>
         <Route path="*" element={<RouteNotFound />} />
       </Routes>

@@ -19,10 +19,11 @@ export default function Input({
   placeholder,
   className,
   resizable,
+  onKeyDown,
+  pattern,
   autoComplete,
   advice,
   required,
-  onKeyDown,
 }: CustomInputProps) {
   return (
     <div key={String(name)} className="flex flex-col gap-1 w-full">
@@ -45,6 +46,7 @@ export default function Input({
       ) : (
         <input
           onKeyDown={onKeyDown}
+          pattern={pattern}
           autoComplete={autoComplete}
           className={`text-gray-800 p-2 placeholder-gray-500 border-b-2 dark:text-gray-300 border-gray-500 border-gray-300 outline-none bg-transparent ${className || ''} ${
             errors ? 'border-red-500 focus:border-red-700' : 'focus:border-blue-700'

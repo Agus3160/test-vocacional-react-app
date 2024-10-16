@@ -43,6 +43,7 @@ export default function BasicUserInfo() {
       <div className="flex flex-col gap-8">
         <Input
           label="Nombre"
+          autoComplete="off"
           placeholder="Ingresa tu nombre"
           register={register}
           required
@@ -54,6 +55,7 @@ export default function BasicUserInfo() {
         <Input
           label="Apellido"
           placeholder="Ingresa tu apellido"
+          autoComplete="off"
           register={register}
           required
           type="text"
@@ -62,16 +64,26 @@ export default function BasicUserInfo() {
         />
 
         <Input
-          onKeyDown={(event) => {
-            if (!/^\d$/.test(event.key) && event.key !== "Backspace")
-              event.preventDefault();
-          }}
+          pattern="[0-9]"
+          autoComplete="off"
           label="CI"
+          onKeyDown={(e) => {
+            if (
+              e.key === " " || 
+              e.key === "-" || 
+              e.key === "." || 
+              e.key === "," || 
+              (isNaN(Number(e.key)) && e.key !== "Backspace")
+            ){
+              e.preventDefault();
+              console.log(e.key);
+            }
+          }}
           placeholder="Ingresa tu CI"
           register={register}
           required
           advice="Ingresa tu CI sin puntos ni guiones"
-          type="text"
+          type="number"
           errors={errors.informacionBasicaUsuario?.ci?.message}
           name="informacionBasicaUsuario.ci"
         />

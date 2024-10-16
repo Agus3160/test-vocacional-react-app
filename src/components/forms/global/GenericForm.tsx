@@ -53,14 +53,16 @@ export default function GenericForm<T extends FieldValues>({
         {icon && icon}
       </div>
 
-      {fields.map(({ name, label, type, placeholder, advice, required, autoComplete }) => (
+      {fields.map(({ name, label, type, placeholder, advice, onKeyDown, pattern, required, autoComplete }) => (
         <Input
           key={String(name)}
           register={register}
           name={name}
           label={label}
+          onKeyDown={onKeyDown}
           type={type}
           autoComplete={autoComplete}
+          pattern={pattern}
           required={required}
           errors={errors[name]?.message as string}
           placeholder={placeholder}
