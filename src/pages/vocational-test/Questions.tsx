@@ -123,6 +123,7 @@ export default function Questions() {
           type: "submit",
           disabled: isSubmitting,
         }}
+        nextBtnText="Enviar"
       />
     </form>
   );
