@@ -45,10 +45,12 @@ const sendResult = async (data: TypeFormProvider): Promise<string> => {
   formData.append("resultadoTitle", JSON.stringify(resultFieldName));
   formData.append("captchaToken", captchaToken);
 
-  await fetchApi("/resultado/encuestado", {
+  const { success, message } = await fetchApi("/resultado/encuestado", {
     method: "POST",
     body: formData,
   });
+
+  if (!success) throw new Error(message);
 
   return resultFieldName;
 };

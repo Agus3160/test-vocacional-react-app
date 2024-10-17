@@ -33,7 +33,7 @@ function NavForm({
       >
         {nextBtnText}
         {nextBtnProps?.type === "submit" && nextBtnProps.disabled && (
-          <LoaderCircle className="animate-spin" />
+          <LoaderCircle size={20} className="animate-spin" />
         )}
       </button>
     </div>
